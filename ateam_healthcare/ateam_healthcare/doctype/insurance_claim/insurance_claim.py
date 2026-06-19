@@ -157,18 +157,16 @@ class InsuranceClaim(Document):
 			"party": self.patient,
 			"debit_in_account_currency": flt(self.patient_payable, 3),
 			"credit_in_account_currency": 0,
-			"reference_type": "Sales Invoice",
-			"reference_name": self.sales_invoice or None,
 			"user_remark": _("Patient Co-Pay + Uncovered + Disallowed — Claim {0}").format(self.name)
 		})
 
 		# Debit: Insurance Receivables
 		jv_accounts.append({
 			"account": self.insurance_receivable_account,
+			"party_type": "Customer",
+			"party": self.patient,
 			"debit_in_account_currency": flt(self.insurance_payable, 3),
 			"credit_in_account_currency": 0,
-			"reference_type": "Insurance Claim",
-			"reference_name": self.name,
 			"user_remark": _("Insurance Payable — Claim {0}").format(self.name)
 		})
 
@@ -177,9 +175,7 @@ class InsuranceClaim(Document):
 			jv_accounts.append({
 				"account": account,
 				"debit_in_account_currency": 0,
-				"credit_in_account_currency": flt(amount, 3),
-				"reference_type": "Insurance Claim",
-				"reference_name": self.name
+				"credit_in_account_currency": flt(amount, 3)
 			})
 
 		jv = frappe.get_doc({

@@ -139,11 +139,13 @@ doctype_js = {
 # ---------------
 # Hook on document methods and events
 
-doc_events = {
-	"Sales Invoice": {
-		"on_submit": "ateam_healthcare.ateam_healthcare.doctype.insurance_claim.insurance_claim.update_sales_invoice_eclaim_status_on_submit"
-	}
-}
+# doc_events = {
+# 	"*": {
+# 		"on_update": "method",
+# 		"on_cancel": "method",
+# 		"on_trash": "method"
+# 	}
+# }
 
 # Scheduled Tasks
 # ---------------
