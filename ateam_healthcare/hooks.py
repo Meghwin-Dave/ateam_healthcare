@@ -43,7 +43,9 @@ app_license = "mit"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {
+	"Sales Invoice": "public/js/sales_invoice.js"
+}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -137,13 +139,11 @@ app_license = "mit"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	"Sales Invoice": {
+		"on_submit": "ateam_healthcare.ateam_healthcare.doctype.insurance_claim.insurance_claim.update_sales_invoice_eclaim_status_on_submit"
+	}
+}
 
 # Scheduled Tasks
 # ---------------
@@ -247,3 +247,11 @@ app_license = "mit"
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
 
+fixtures = [
+	{
+		"dt": "Custom Field",
+		"filters": [
+			["module", "in", ["Ateam Healthcare"]]
+		]
+	}
+]

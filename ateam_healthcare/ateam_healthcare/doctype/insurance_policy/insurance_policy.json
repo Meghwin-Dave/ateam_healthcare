@@ -1,0 +1,169 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-06-19 00:42:19.028394",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "policy_number",
+  "patient",
+  "insurance_company",
+  "insurance_plan",
+  "column_break_hmlf",
+  "start_date",
+  "end_date",
+  "coverage_cap",
+  "co_pay_percentage",
+  "remaining_balance",
+  "status",
+  "section_break_accounts",
+  "insurance_receivable_account",
+  "section_break_mhbm",
+  "procedures"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Naming Series",
+   "options": "IP-"
+  },
+  {
+   "fieldname": "policy_number",
+   "fieldtype": "Data",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Policy Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "insurance_company",
+   "fieldtype": "Link",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Insurance Company",
+   "options": "Insurance Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "insurance_plan",
+   "fieldtype": "Link",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Insurance Plan",
+   "options": "Insurance Plan",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_hmlf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date"
+  },
+  {
+   "fetch_from": "insurance_plan.coverage_cap",
+   "fetch_if_empty": 1,
+   "fieldname": "coverage_cap",
+   "fieldtype": "Currency",
+   "label": "Coverage Cap"
+  },
+  {
+   "fetch_from": "insurance_plan.co_pay_percentage",
+   "fetch_if_empty": 1,
+   "fieldname": "co_pay_percentage",
+   "fieldtype": "Percent",
+   "label": "Co Pay Percentage"
+  },
+  {
+   "fieldname": "remaining_balance",
+   "fieldtype": "Currency",
+   "label": "Remaining Balance"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Draft\nActive\nExpired\nCancelled"
+  },
+  {
+   "fieldname": "section_break_accounts",
+   "fieldtype": "Section Break",
+   "label": "GL Account Configuration"
+  },
+  {
+   "description": "Accounts Receivable account to debit when insurance owes payment for this policy's claims.",
+   "fieldname": "insurance_receivable_account",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Insurance Receivable Account",
+   "options": "Account",
+   "reqd": 0
+  },
+  {
+   "fieldname": "section_break_mhbm",
+   "fieldtype": "Section Break",
+   "label": "Covered Procedures"
+  },
+  {
+   "fieldname": "procedures",
+   "fieldtype": "Table",
+   "label": "Procedures",
+   "options": "Medical Procedure"
+  },
+  {
+   "fieldname": "patient",
+   "fieldtype": "Link",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Patient",
+   "options": "Customer",
+   "reqd": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-06-19 10:05:00.000000",
+ "modified_by": "Administrator",
+ "module": "Ateam Healthcare",
+ "name": "Insurance Policy",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

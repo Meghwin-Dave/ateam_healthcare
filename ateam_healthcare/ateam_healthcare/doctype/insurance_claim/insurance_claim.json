@@ -1,0 +1,344 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-06-19 09:48:40.740473",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_header",
+  "naming_series",
+  "amended_from",
+  "claim_number",
+  "patient",
+  "insurance_policy",
+  "column_break_header",
+  "sales_invoice",
+  "claim_date",
+  "status",
+  "pre_auth_status",
+  "pre_auth_number",
+  "gl_entry_status",
+  "journal_entry",
+  "section_break_policy",
+  "co_pay_percentage",
+  "deductible_cap",
+  "column_break_policy",
+  "insurance_receivable_account",
+  "patient_receivable_account",
+  "section_break_settlement",
+  "invoice_amount",
+  "disallowed_amount",
+  "approved_amount",
+  "co_pay_amount",
+  "column_break_settlement",
+  "uncovered_amount",
+  "insurance_payable",
+  "patient_payable",
+  "section_break_eclaim",
+  "eclaim_json",
+  "eclaim_response",
+  "section_break_items",
+  "items"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_header",
+   "fieldtype": "Section Break",
+   "label": "Claim Information"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Naming Series",
+   "options": "IC-"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Insurance Claim",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "claim_number",
+   "fieldtype": "Data",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Claim Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "patient",
+   "fieldtype": "Link",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Patient",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "insurance_policy",
+   "fieldtype": "Link",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Insurance Policy",
+   "options": "Insurance Policy",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_header",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "sales_invoice",
+   "fieldtype": "Link",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Sales Invoice",
+   "options": "Sales Invoice"
+  },
+  {
+   "default": "Today",
+   "fieldname": "claim_date",
+   "fieldtype": "Date",
+   "label": "Claim Date",
+   "reqd": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Claim Status",
+   "options": "Draft\nSubmitted\nApproved\nRejected\nSettled"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "pre_auth_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Pre-Auth Status",
+   "options": "Pending\nApproved\nRejected"
+  },
+  {
+   "fieldname": "pre_auth_number",
+   "fieldtype": "Data",
+   "label": "Pre-Auth Number",
+   "read_only": 1
+  },
+  {
+   "default": "Pending",
+   "fieldname": "gl_entry_status",
+   "fieldtype": "Select",
+   "label": "GL Entry Status",
+   "options": "Pending\nPosted",
+   "read_only": 1
+  },
+  {
+   "fieldname": "journal_entry",
+   "fieldtype": "Link",
+   "label": "Journal Entry",
+   "options": "Journal Entry",
+   "read_only": 1
+  },
+  {
+   "collapsible": 0,
+   "fieldname": "section_break_policy",
+   "fieldtype": "Section Break",
+   "label": "Policy & Account Details"
+  },
+  {
+   "fetch_from": "insurance_policy.co_pay_percentage",
+   "fetch_if_empty": 1,
+   "fieldname": "co_pay_percentage",
+   "fieldtype": "Percent",
+   "label": "Co-Pay Percentage (%)"
+  },
+  {
+   "fetch_from": "insurance_policy.coverage_cap",
+   "fetch_if_empty": 1,
+   "fieldname": "deductible_cap",
+   "fieldtype": "Currency",
+   "label": "Deductible Cap (Max Insurance Coverage)"
+  },
+  {
+   "fieldname": "column_break_policy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "insurance_policy.insurance_receivable_account",
+   "fetch_if_empty": 1,
+   "fieldname": "insurance_receivable_account",
+   "fieldtype": "Link",
+   "label": "Insurance Receivable Account",
+   "options": "Account"
+  },
+  {
+   "fetch_from": "patient.custom_patient_receivable_account",
+   "fetch_if_empty": 1,
+   "fieldname": "patient_receivable_account",
+   "fieldtype": "Link",
+   "label": "Patient Receivable Account",
+   "options": "Account"
+  },
+  {
+   "collapsible": 0,
+   "fieldname": "section_break_settlement",
+   "fieldtype": "Section Break",
+   "label": "Settlement Calculation"
+  },
+  {
+   "fieldname": "invoice_amount",
+   "fieldtype": "Currency",
+   "label": "Total Invoice Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "disallowed_amount",
+   "fieldtype": "Currency",
+   "label": "Disallowed Amount (Non-Reimbursable)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "approved_amount",
+   "fieldtype": "Currency",
+   "label": "Approved Amount (Capped)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "co_pay_amount",
+   "fieldtype": "Currency",
+   "label": "Co-Pay Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_settlement",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "uncovered_amount",
+   "fieldtype": "Currency",
+   "label": "Uncovered Amount (Above Cap)",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "fieldname": "insurance_payable",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Insurance Payable (Dr Insurance Receivables)",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "fieldname": "patient_payable",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Patient Payable (Dr Patient Receivables)",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_eclaim",
+   "fieldtype": "Section Break",
+   "label": "e-Claim Details"
+  },
+  {
+   "fieldname": "eclaim_json",
+   "fieldtype": "Code",
+   "label": "e-Claim JSON Payload",
+   "options": "JSON",
+   "read_only": 1
+  },
+  {
+   "fieldname": "eclaim_response",
+   "fieldtype": "Code",
+   "label": "Gateway Response",
+   "options": "JSON",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_items",
+   "fieldtype": "Section Break",
+   "label": "Claim Items"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Insurance Claim Item"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-06-19 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Ateam Healthcare",
+ "name": "Insurance Claim",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [
+  {
+   "color": "Orange",
+   "title": "Pending"
+  },
+  {
+   "color": "Green",
+   "title": "Approved"
+  },
+  {
+   "color": "Red",
+   "title": "Rejected"
+  },
+  {
+   "color": "Blue",
+   "title": "Settled"
+  }
+ ]
+}
